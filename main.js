@@ -4,7 +4,9 @@ var player1 = 0;
 var player2 = 1;
 var currentPlayer = null;
 var winStreak = null; // dynamic win requirements: 3,4,5
-
+var selectedRow = null;
+var selectedColumn = null;
+var selectedValue = null;
 
 
 
@@ -52,6 +54,9 @@ function playersTurn () {
         newPtag = $('<p>')
         $(this).append(newPtag);
         $(newPtag).text('X');
+        selectedRow = $(this).attr('row');
+        selectedColumn = $(this).attr('column');
+        selectedValue =$(this).text();
         $(this).off('click')
         currentPlayer = player2;
     }else{
