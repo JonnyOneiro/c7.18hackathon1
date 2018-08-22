@@ -21,10 +21,16 @@ header{
 }
 
 .square{
+    vertical-align: top; 
     display: inline-block;
     position: relative;
     width:  29%;
     height: 32%;
     border: 3px solid black;
     margin: auto;
+}
+
+p{
+    text-align: center;
+    font-size: 75px;
 }
