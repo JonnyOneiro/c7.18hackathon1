@@ -33,11 +33,11 @@ function createGameboard (gameBoardArray) {
             newDiv.addClass('square')
             newDiv.attr('row', row);
             newDiv.attr('column', column)
-            // $('.square').css('height', 98/gameBoardArray.length);
-            // $('.square').css('width', 98/gameBoardArray.length);
             $('.gameboard').append(newDiv);
         }
     }
+    $('.square').css('height', 95/gameBoardArray.length+'%');
+    $('.square').css('width', 95/gameBoardArray.length+'%');
 }
 
 
