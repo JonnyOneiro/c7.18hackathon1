@@ -25,14 +25,12 @@ function initializeGame () {
 
 
 function createGameboard (gameBoardArray) {
-    for(i=0; i<gameBoardArray.length; i++){
-        var column = i;
-        for(k=0; k<gameBoardArray.length; k++){
-            var row = k;
+    for(var row=0; row<gameBoardArray.length; row++){
+        for(column=0; column<gameBoardArray.length; column++){
             var newDiv = $('<div>');
             newDiv.addClass('square')
-            newDiv.attr('row', column)
-            newDiv.attr('column', row);
+            newDiv.attr('row', row);
+            newDiv.attr('column', column)
             $('.gameboard').append(newDiv);
         }
     }
@@ -124,8 +122,8 @@ function startingPlayer(){
 
 function makeArray(boardSize){
     virtualBoard = new Array();
-        for (var x = 0; x <= (boardSize-2); x++) {
-            virtualBoard[x] = new Array(boardSize).fill('');
-            virtualBoard.push(virtualBoard[x]);
+        for (var newSubArray = 0; newSubArray <= (boardSize-2); newSubArray++) {
+            virtualBoard[newSubArray] = new Array(boardSize).fill('');
+            virtualBoard.push(virtualBoard[newSubArray]);
         }
 }
