@@ -50,18 +50,26 @@ function playersTurn () {
 
 
 
-function CheckForWin(boxClicked) {
+function CheckForWin(position, token) {
 
-  checkRowWin(boxClicked)
-  checkColumnWin(boxClicked)
-  checkPosDiagnalWin(boxClicked)
-  checkNegDiagnalWin(boxClicked)
+    var virtualBoard = new Array(boardSize);
+        for (var x = 0; x < boardSize; x++) {
+            virtualBoard[x] = new Array(boardSize).fill('');;
+        }
+
+    var position; // = virtualboard[c][r]    
+     
+    
+
+  checkRowWin(position, token)
+  checkColumnWin(position, token)
+  checkPosDiagnalWin(position, token)
+  checkNegDiagnalWin(position, token)
   
 
 }
 
-function checkRowWin () {
-  if (selectedBox === 
+function checkRowWin (position, token) {
 }
 function checkColumnWin () {
 }
