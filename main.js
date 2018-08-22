@@ -36,6 +36,8 @@ function createGameboard (gameBoardArray) {
             $('.gameboard').append(newDiv);
         }
     }
+    $('.square').css('height', 95/gameBoardArray.length+'%');
+    $('.square').css('width', 95/gameBoardArray.length+'%');
 }
 
 
@@ -56,6 +58,8 @@ function playersTurn () {
         $(newPtag).text('X');
         selectedRow = $(this).attr('row');
         selectedColumn = $(this).attr('column');
+        console.log('selected row:', selectedRow);
+        console.log('selected column:', selectedColumn);
         selectedValue =$(this).text();
         $(this).off('click', playersTurn);
         virtualBoard[selectedRow][selectedColumn] = selectedValue;
@@ -67,6 +71,9 @@ function playersTurn () {
         $(newPtag).text('O');
         selectedRow = $(this).attr('row');
         selectedColumn = $(this).attr('column');
+        console.log('selected row:', selectedRow);
+        console.log('selected column:', selectedColumn);
+        console.log('selected value:', selectedValue);
         selectedValue =$(this).text();
         $(this).off('click', playersTurn);
         virtualBoard[selectedRow][selectedColumn] = selectedValue;
