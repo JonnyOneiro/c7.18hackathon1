@@ -10,17 +10,25 @@ var player2;
 
 
 function initializeGame () {
-
+    createGameboard(3);
 
 
 }
 
 
 
-function createGameboard () {
-
-
-
+function createGameboard (boardSize) {
+    for(i=0; i<boardSize; i++){
+        var column = i;
+        for(k=0; k<boardSize; k++){
+            var row = k;
+            var newDiv = $('<div>');
+            newDiv.addClass('square')
+            newDiv.attr('row', column)
+            newDiv.attr('column', row);
+            $('.gameboard').append(newDiv);
+        }
+    }
 }
 
 
