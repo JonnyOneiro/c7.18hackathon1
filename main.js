@@ -13,8 +13,11 @@ var winStreak = null; // dynamic win requirements: 3,4,5
 
 function initializeGame () {
     createGameboard(3);
+    $('.square').on('click', clickHandler);
+
     startingPlayer();
     $('.square').on('click', playersTurn);
+
 }
 
 
@@ -71,6 +74,8 @@ function CheckForWin(boxClicked) {
 
 }
 
+
+
 function checkRowWin () {
 }
 function checkColumnWin () {
@@ -82,14 +87,27 @@ function checkNegDiagnalWin () {
 
 
 
+
 function resetGame () {
 
 
+}
 
+
+function clickHandler() {
+
+    var columnVal = $(this).attr('column');
+    var rowVal = $(this).attr('row');
+    console.log('the row value is: ', rowVal);
+    console.log('the column value is: ', columnVal);
+
+    var sqTextVal = $('.square').text();
+    console.log('the text is: ', sqTextVal);
 }
 
 
 function startingPlayer(){
     currentPlayer = player1;
     console.log('starting player');
+
 }
