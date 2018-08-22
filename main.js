@@ -10,7 +10,7 @@ var player2;
 
 
 function initializeGame () {
-
+    $()
 
 
 }
