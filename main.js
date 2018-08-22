@@ -12,24 +12,25 @@ var winStreak = null; // dynamic win requirements: 3,4,5
 
 
 function initializeGame () {
-    createGameboard(3);
+    makeArray(3);
+    createGameboard(virtualBoard);
     $('.square').on('click', clickHandler);
 
     startingPlayer();
     $('.square').on('click', playersTurn);
 
+    
+
 }
 
 
-function createGameboard (boardSize) {
-    for(i=0; i<boardSize; i++){
-        var column = i;
-        for(k=0; k<boardSize; k++){
-            var row = k;
+function createGameboard (gameBoardArray) {
+    for(var row=0; row<gameBoardArray.length; row++){
+        for(column=0; column<gameBoardArray.length; column++){
             var newDiv = $('<div>');
             newDiv.addClass('square')
-            newDiv.attr('row', column)
-            newDiv.attr('column', row);
+            newDiv.attr('row', row);
+            newDiv.attr('column', column)
             $('.gameboard').append(newDiv);
         }
     }
@@ -66,10 +67,7 @@ function playersTurn () {
 
 function CheckForWin(position, token) {
 
-    var virtualBoard = new Array(boardSize);
-        for (var x = 0; x < boardSize; x++) {
-            virtualBoard[x] = new Array(boardSize).fill('');;
-        }
+    
 
     var position; // = virtualboard[c][r]    
      
@@ -119,4 +117,13 @@ function startingPlayer(){
     currentPlayer = player1;
     console.log('starting player');
 
+}
+
+
+function makeArray(boardSize){
+    virtualBoard = new Array();
+        for (var newSubArray = 0; newSubArray <= (boardSize-2); newSubArray++) {
+            virtualBoard[newSubArray] = new Array(boardSize).fill('');
+            virtualBoard.push(virtualBoard[newSubArray]);
+        }
 }
