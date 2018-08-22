@@ -71,9 +71,8 @@ function CheckForWin(boxClicked) {
 
 }
 
-// function checkRowWin () {
-//   if (selectedBox === 
-// }
+function checkRowWin () {
+}
 function checkColumnWin () {
 }
 function checkPosDiagnalWin () {
