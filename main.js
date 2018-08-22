@@ -5,17 +5,21 @@ var player2 = 1;
 var currentPlayer = null;
 var winStreak = null; // dynamic win requirements: 3,4,5
 
-//for keepScore()
+
 var scoreCounter = 0;
 var scoreTitle = $('<h3>').text('Score Board: ');
-// ^
+var selectedRow = null;
+var selectedColumn = null;
+var selectedValue = null;
+
 
 
 
 
 
 function initializeGame () {
-    createGameboard(3);
+    makeArray(3);
+    createGameboard(virtualBoard);
     $('.square').on('click', clickHandler);
 
     startingPlayer();
@@ -23,25 +27,27 @@ function initializeGame () {
 
     
 
+
     $('.scoreboard').append(scoreTitle);
     $('h3').append(scoreCounter);
     
 
+
 }
 
 
-function createGameboard (boardSize) {
-    for(i=0; i<boardSize; i++){
-        var column = i;
-        for(k=0; k<boardSize; k++){
-            var row = k;
+function createGameboard (gameBoardArray) {
+    for(var row=0; row<gameBoardArray.length; row++){
+        for(column=0; column<gameBoardArray.length; column++){
             var newDiv = $('<div>');
             newDiv.addClass('square')
-            newDiv.attr('row', column)
-            newDiv.attr('column', row);
+            newDiv.attr('row', row);
+            newDiv.attr('column', column)
             $('.gameboard').append(newDiv);
         }
     }
+    $('.square').css('height', 95/gameBoardArray.length+'%');
+    $('.square').css('width', 95/gameBoardArray.length+'%');
 }
 
 
@@ -62,13 +68,28 @@ function playersTurn () {
         newPtag = $('<p>')
         $(this).append(newPtag);
         $(newPtag).text('X');
-        $(this).off('click')
+        selectedRow = $(this).attr('row');
+        selectedColumn = $(this).attr('column');
+        console.log('selected row:', selectedRow);
+        console.log('selected column:', selectedColumn);
+        selectedValue =$(this).text();
+        $(this).off('click', playersTurn);
+        virtualBoard[selectedRow][selectedColumn] = selectedValue;
+        console.log(virtualBoard);
         currentPlayer = player2;
     }else{
         newPtag = $('<p>')
         $(this).append(newPtag);
         $(newPtag).text('O');
-        $(this).off('click')
+        selectedRow = $(this).attr('row');
+        selectedColumn = $(this).attr('column');
+        console.log('selected row:', selectedRow);
+        console.log('selected column:', selectedColumn);
+        console.log('selected value:', selectedValue);
+        selectedValue =$(this).text();
+        $(this).off('click', playersTurn);
+        virtualBoard[selectedRow][selectedColumn] = selectedValue;
+        console.log(virtualBoard);
         currentPlayer = player1;
     }
 }
@@ -77,10 +98,7 @@ function playersTurn () {
 
 function CheckForWin(position, token) {
 
-    var virtualBoard = new Array(boardSize);
-        for (var x = 0; x < boardSize; x++) {
-            virtualBoard[x] = new Array(boardSize).fill('');;
-        }
+    
 
     var position; // = virtualboard[c][r]    
      
@@ -130,4 +148,13 @@ function startingPlayer(){
     currentPlayer = player1;
     console.log('starting player');
 
+}
+
+
+function makeArray(boardSize){
+    virtualBoard = new Array();
+        for (var newSubArray = 0; newSubArray <= (boardSize-1); newSubArray++) {
+            var actualBoard = new Array(boardSize).fill('');
+            virtualBoard.push(actualBoard);
+        }
 }

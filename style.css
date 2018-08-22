@@ -34,9 +34,7 @@ header{
     vertical-align: top; 
     display: inline-block;
     position: relative;
-    width:  29%;
-    height: 32%;
-    border: 3px solid black;
+    border: 2px solid black;
     margin: auto;
 }
 
