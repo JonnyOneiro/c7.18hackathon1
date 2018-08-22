@@ -5,7 +5,10 @@ var player2 = 1;
 var currentPlayer = null;
 var winStreak = null; // dynamic win requirements: 3,4,5
 
-
+//for keepScore()
+var scoreCounter = 0;
+var scoreTitle = $('<h3>').text('Score Board: ');
+// ^
 
 
 
@@ -17,6 +20,12 @@ function initializeGame () {
 
     startingPlayer();
     $('.square').on('click', playersTurn);
+
+    
+
+    $('.scoreboard').append(scoreTitle);
+    $('h3').append(scoreCounter);
+    
 
 }
 
@@ -38,8 +47,10 @@ function createGameboard (boardSize) {
 
 
 function keepScore () {
-
-
+    console.log('keepScore called');
+ 
+    $('.scoreboard').append(scoreTitle);
+    $('h3').text('Score Board: ' + scoreCounter);
 
 }
 
@@ -99,7 +110,7 @@ function checkNegDiagnalWin () {
 
 function resetGame () {
 
-
+    scoreCounter++;
 }
 
 
