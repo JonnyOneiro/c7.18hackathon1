@@ -33,6 +33,8 @@ function createGameboard (gameBoardArray) {
             newDiv.addClass('square')
             newDiv.attr('row', row);
             newDiv.attr('column', column)
+            // $('.square').css('height', 98/gameBoardArray.length);
+            // $('.square').css('width', 98/gameBoardArray.length);
             $('.gameboard').append(newDiv);
         }
     }
@@ -56,13 +58,22 @@ function playersTurn () {
         $(newPtag).text('X');
         selectedRow = $(this).attr('row');
         selectedColumn = $(this).attr('column');
+        console.log('selected row:', selectedRow);
+        console.log('selected column:', selectedColumn);
         selectedValue =$(this).text();
+        console.log('selected value:', selectedValue);
         $(this).off('click')
         currentPlayer = player2;
     }else{
         newPtag = $('<p>')
         $(this).append(newPtag);
         $(newPtag).text('O');
+        selectedRow = $(this).attr('row');
+        selectedColumn = $(this).attr('column');
+        console.log('selected row:', selectedRow);
+        console.log('selected column:', selectedColumn);
+        selectedValue =$(this).text();
+        console.log('selected value:', selectedValue);
         $(this).off('click')
         currentPlayer = player1;
     }
