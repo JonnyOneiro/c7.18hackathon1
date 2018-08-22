@@ -57,13 +57,20 @@ function playersTurn () {
         selectedRow = $(this).attr('row');
         selectedColumn = $(this).attr('column');
         selectedValue =$(this).text();
-        $(this).off('click')
+        $(this).off('click', playersTurn);
+        virtualBoard[selectedRow][selectedColumn] = selectedValue;
+        console.log(virtualBoard);
         currentPlayer = player2;
     }else{
         newPtag = $('<p>')
         $(this).append(newPtag);
         $(newPtag).text('O');
-        $(this).off('click')
+        selectedRow = $(this).attr('row');
+        selectedColumn = $(this).attr('column');
+        selectedValue =$(this).text();
+        $(this).off('click', playersTurn);
+        virtualBoard[selectedRow][selectedColumn] = selectedValue;
+        console.log(virtualBoard);
         currentPlayer = player1;
     }
 }
@@ -127,8 +134,8 @@ function startingPlayer(){
 
 function makeArray(boardSize){
     virtualBoard = new Array();
-        for (var newSubArray = 0; newSubArray <= (boardSize-2); newSubArray++) {
-            virtualBoard[newSubArray] = new Array(boardSize).fill('');
-            virtualBoard.push(virtualBoard[newSubArray]);
+        for (var newSubArray = 0; newSubArray <= (boardSize-1); newSubArray++) {
+            var actualBoard = new Array(boardSize).fill('');
+            virtualBoard.push(actualBoard);
         }
 }
