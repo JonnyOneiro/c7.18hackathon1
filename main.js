@@ -1,7 +1,8 @@
 $(document).ready(initializeGame);
 
-var player1;
-var player2;
+var player1 = 0;
+var player2 = 1;
+var currentPlayer = null;
 var winStreak = null; // dynamic win requirements: 3,4,5
 
 
@@ -12,10 +13,9 @@ var winStreak = null; // dynamic win requirements: 3,4,5
 
 function initializeGame () {
     createGameboard(3);
-
-
+    startingPlayer();
+    $('.square').on('click', playersTurn);
 }
-
 
 
 function createGameboard (boardSize) {
@@ -43,9 +43,20 @@ function keepScore () {
 
 
 function playersTurn () {
-
-
-
+    // CheckForWin();
+    if(currentPlayer === player1){
+        newPtag = $('<p>')
+        $(this).append(newPtag);
+        $(newPtag).text('X');
+        $(this).off('click')
+        currentPlayer = player2;
+    }else{
+        newPtag = $('<p>')
+        $(this).append(newPtag);
+        $(newPtag).text('O');
+        $(this).off('click')
+        currentPlayer = player1;
+    }
 }
 
 
@@ -61,7 +72,6 @@ function CheckForWin(boxClicked) {
 }
 
 function checkRowWin () {
-  if (selectedBox === 
 }
 function checkColumnWin () {
 }
@@ -78,3 +88,8 @@ function resetGame () {
 
 }
 
+
+function startingPlayer(){
+    currentPlayer = player1;
+    console.log('starting player');
+}
