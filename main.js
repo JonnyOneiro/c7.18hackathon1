@@ -61,8 +61,9 @@ function playersTurn () {
         console.log('selected row:', selectedRow);
         console.log('selected column:', selectedColumn);
         selectedValue =$(this).text();
-        console.log('selected value:', selectedValue);
-        $(this).off('click')
+        $(this).off('click', playersTurn);
+        virtualBoard[selectedRow][selectedColumn] = selectedValue;
+        console.log(virtualBoard);
         currentPlayer = player2;
     }else{
         newPtag = $('<p>')
@@ -72,9 +73,11 @@ function playersTurn () {
         selectedColumn = $(this).attr('column');
         console.log('selected row:', selectedRow);
         console.log('selected column:', selectedColumn);
-        selectedValue =$(this).text();
         console.log('selected value:', selectedValue);
-        $(this).off('click')
+        selectedValue =$(this).text();
+        $(this).off('click', playersTurn);
+        virtualBoard[selectedRow][selectedColumn] = selectedValue;
+        console.log(virtualBoard);
         currentPlayer = player1;
     }
 }
@@ -138,8 +141,8 @@ function startingPlayer(){
 
 function makeArray(boardSize){
     virtualBoard = new Array();
-        for (var newSubArray = 0; newSubArray <= (boardSize-2); newSubArray++) {
-            virtualBoard[newSubArray] = new Array(boardSize).fill('');
-            virtualBoard.push(virtualBoard[newSubArray]);
+        for (var newSubArray = 0; newSubArray <= (boardSize-1); newSubArray++) {
+            var actualBoard = new Array(boardSize).fill('');
+            virtualBoard.push(actualBoard);
         }
 }
