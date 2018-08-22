@@ -2,35 +2,47 @@
     height: 100vh;
     width: 100vw;
     margin: auto;
-    font-size: 0;
+    /* font-size: 0; */
+
 }
 
 header{
     height: 10%;
     width: 100%;
+    justify-content: center;
+    text-align: center;
 }
 
 .scoreboard{
     height: 10%;
     width: 100%;
+    margin: 0;
+    /*font-size: 2em; */ /*activating this makes line spaces in between the gameboard rows*/
+    
+}
+
+.scoreboard > h3{
+    font-size: 2em;
 }
 .gameboard{
     margin: auto;
-    height: 80%;
-    width: 70%;
+    height: 60%;
+    width: 50%;
 }
 
 .square{
     vertical-align: top; 
     display: inline-block;
     position: relative;
-    width:  29%;
-    height: 32%;
-    border: 3px solid black;
+    border: 2px solid black;
     margin: auto;
 }
 
 p{
     text-align: center;
-    font-size: 75px;
+    font-size: 2em;
 }
+
+/* span{
+    text-align: center;
+} */
