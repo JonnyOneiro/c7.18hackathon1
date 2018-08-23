@@ -7,6 +7,8 @@
     background-image: url("assets/background.png");
     background-repeat: no-repeat;
     background-attachment: fixed;
+    background-size: cover;
+
     background-position: center; 
     color: white;
     font-family: nitemare;
@@ -31,7 +33,7 @@ header{
     justify-content: center;
     text-align: center;
     font-family: nitemare;
-    font-size: 2em;
+    font-size: 1.5em;
     font-weight: bolder;
     text-shadow:
         -1px -1px 0 #000,  
@@ -112,3 +114,16 @@ button:hover {
     position: relative;
     bottom: 50%;
 }
+
+.message {
+    font-size: 6em;
+    color: rgb(255, 250, 181);
+    text-shadow:
+        -2px -2px 10 #000,  
+        2px -2px 10 #000,
+        -2px 2px 10 #000,
+        3px 3px 10 #000;
+    position: absolute;
+    top: 40%;
+    left: 38%;
+  }

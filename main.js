@@ -157,6 +157,7 @@ function checkForWin(selectedRow,selectedColumn,selectedValue) {
   checkColumnWin(selectedRow,selectedColumn,selectedValue);
   checkPosDiagonalWin(selectedRow,selectedColumn,selectedValue);
   checkNegDiagonalWin(selectedRow,selectedColumn,selectedValue);
+
 }
 
 function checkRowWin (selectedRow, selectedColumn, selectedValue) {
@@ -254,7 +255,13 @@ function checkNegDiagonalWin(selectedRow, selectedColumn, selectedValue) {
 
 function announceWinner() {
     checkWin = false;
+    if (currentPlayer === 0) {
+        currentPlayer = 2;   
+    }  
+      var winMessage = 'Player ' + currentPlayer + ' Wins!';
+    $('.message').text(winMessage);
     console.log("you win!");
+
 }
 
 function resetGame () {
@@ -278,7 +285,7 @@ function resetGame () {
 
     startingPlayer();
     $('.square').on('click', playersTurn);
-
+    $('.message').text('');
 }
 
 
