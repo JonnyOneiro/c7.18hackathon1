@@ -26,19 +26,28 @@ changeGameSize.append(fivebyfive);
 changeGameSize.append(fourbyfour);
 changeGameSize.append(threebythree);
 $(fivebyfive).on('click', function(){
-    $('.gameboard').empty();
+    resetGame();
     makeArray(5);
     createGameboard(virtualBoard);
+    $('.square').on('click', playersTurn);
 })
 $(fourbyfour).on('click', function(){
-    $('.gameboard').empty();
+    resetGame();
     makeArray(4);
     createGameboard(virtualBoard);
+    $('.square').on('click', playersTurn);
 });
 $(threebythree).on('click', function(){
-    $('.gameboard').empty();
+    resetGame();
     makeArray(3);
     createGameboard(virtualBoard);
+    $('.square').on('click', playersTurn);
+});
+$(resetButton).on('click',function(){
+    resetGame();
+    makeArray(3);
+    createGameboard(virtualBoard);
+    $('.square').on('click', playersTurn);
 });
 
 
@@ -53,15 +62,11 @@ function initializeGame () {
     startingPlayer();
     $('.square').on('click', playersTurn);
 
-    
-
-
     $('.scoreboard').append(scoreTitle);
     $('h3').append(scoreCounter);
 
     $('.container').append(resetButton);
-
-    $('.restart').on('click', resetGame);
+    
     
     $('.scoreboard').append(changeGameSize);
 
@@ -247,16 +252,13 @@ function resetGame () {
 
     winCount = 1;
     checkWin = true;
-
-    makeArray(3);
-    createGameboard(virtualBoard);
     $('.square').on('click', clickHandler);
 
     startingPlayer();
     $('.square').on('click', playersTurn);
 
-    $('.restart').on('click', resetGame);
 }
+
 
 function clickHandler() {
 
@@ -278,8 +280,8 @@ function startingPlayer(){
 function makeArray(boardSize){
     console.log('makeArray was run');
     virtualBoard = new Array();
-        for (var newSubArray = 0; newSubArray <= (boardSize-1); newSubArray++) {
-            var actualBoard = new Array(boardSize).fill('');
-            virtualBoard.push(actualBoard);
-        }
+    for (var newSubArray = 0; newSubArray <= (boardSize-1); newSubArray++) {
+        var actualBoard = new Array(boardSize).fill('');
+        virtualBoard.push(actualBoard);
+    }
 }
