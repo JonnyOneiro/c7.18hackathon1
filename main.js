@@ -15,6 +15,7 @@ var selectedValue = null;
 
 var winCount = 0;
 
+var resetButton = $('<button>').addClass('restart').text('Reset Game');
 
 
 
@@ -31,7 +32,7 @@ function initializeGame () {
 
     $('.scoreboard').append(scoreTitle);
     $('h3').append(scoreCounter);
-    
+    $('.container').append(resetButton);
 
 
 }
@@ -100,7 +101,7 @@ function playersTurn () {
 
 
 function checkForWin(selectedRow,selectedColumn,selectedValue) {
-    debugger;
+    //debugger;
   checkRowWin(selectedRow,selectedColumn,selectedValue);
   checkColumnWin(selectedRow,selectedColumn,selectedValue);
   checkPosDiagonalWin(selectedRow,selectedColumn,selectedValue);
@@ -212,7 +213,7 @@ function announceWinner() {
 
 
 function resetGame () {
-
+    
     scoreCounter++;
 }
 
