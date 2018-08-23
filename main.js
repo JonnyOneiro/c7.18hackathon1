@@ -3,6 +3,9 @@ $(document).ready(initializeGame);
 var player1 = 0;
 var player2 = 1;
 var currentPlayer = null;
+var player1Image =null;
+var player2Image = null;
+var player1Chosen = false;
 var winStreak = 3; //create bigger board should re-assign these values; make dynamic
 var boardSize = 3; //create bigger board should re-assign these values; make dynamic
 
@@ -16,8 +19,8 @@ var checkWin = true;
 function initializeGame () {
     initializeDom();
     makeArray(3);
-    
     createGameboard(virtualBoard);
+    $('.square').on('click', playersTurn);
 
     
 
@@ -44,6 +47,40 @@ function initializeDom(){
     var fivestreak = $('<button>').text('5').addClass('streakbutton');
     changeStreakNeededToWin.append($('<br>')).append(threestreak, fourstreak, fivestreak).append($('<br>'));
     sideBar.append(scoreTitle, scorePlayer1, scorePlayer2, changeGameSize, changeStreakNeededToWin);
+    $(jack).on('click', function(){
+        if(player1Chosen === false){
+        player1Image = $(jack)
+        player1Chosen=true;
+        }else{
+            player2Image = $(jack)
+        }
+        
+    })
+    $(oggyboogy).on('click', function(){
+        if(player1Chosen === false){
+        player1Image = $(oggyboogy)
+        player1Chosen=true;
+        }else{
+            player2Image = $(oggyboogy)
+        }
+    });
+    $(sally).on('click', function(){
+        if(player1Chosen === false){
+        player1Image = $(sally)
+        player1Chosen=true;
+        }else{
+            player2Image = $(sally)
+        }
+    });
+    $(zero).on('click', function(){
+        if(player1Chosen === false){
+        player1Image = $(zero)
+        player1Chosen=true;
+        }else{
+            player2Image = $(zero)
+        }
+    });
+
     $(threestreak).on('click', function(){
         winStreak = 3;
         console.log('winstreak is:', winStreak);
@@ -95,7 +132,6 @@ function initializeDom(){
     $('.square').on('click', clickHandler);
 
     startingPlayer();
-    $('.square').on('click', playersTurn);
 
 
     $('h3').append(scoreCounter);
@@ -131,29 +167,28 @@ function keepScore () {
 function playersTurn () {
     
     if(currentPlayer === player1){
-        newPtag = $('<p>')
-        $(this).append(newPtag);
-        $(newPtag).text('X');
+        debugger;
+        player1input = player1Image
+        $(this).append(player1input);
         selectedRow = parseInt($(this).attr('row'));
         selectedColumn = parseInt($(this).attr('column'));
         console.log('selected row:', selectedRow);
         console.log('selected column:', selectedColumn);
-        selectedValue =$(this).text();
+        selectedValue =player1input;
         $(this).off('click', playersTurn);
         virtualBoard[selectedRow][selectedColumn] = selectedValue;
         console.log(virtualBoard);
         currentPlayer = player2;
         checkForWin(selectedRow,selectedColumn,selectedValue);
     }else{
-        newPtag = $('<p>')
-        $(this).append(newPtag);
-        $(newPtag).text('O');
+        $(this).append(player2Image);
+        player2input = player2Image;
         selectedRow = parseInt($(this).attr('row'));
         selectedColumn = parseInt($(this).attr('column'));
         console.log('selected row:', selectedRow);
         console.log('selected column:', selectedColumn);
         console.log('selected value:', selectedValue);
-        selectedValue =$(this).text();
+        selectedValue =player2Input;
         $(this).off('click', playersTurn);
         virtualBoard[selectedRow][selectedColumn] = selectedValue;
         console.log(virtualBoard);
