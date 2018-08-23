@@ -5,7 +5,7 @@ var player2 = 1;
 var currentPlayer = null;
 var winStreak = 3; //create bigger board should re-assign these values; make dynamic
 var boardSize = 3; //create bigger board should re-assign these values; make dynamic
-
+// test
 
 var scoreCounter = 0;
 var scoreTitle = $('<h3>').text('Score Board: ');
@@ -15,6 +15,7 @@ var selectedValue = null;
 
 var winCount = 1;
 var checkWin = true;
+
 
 var resetButton = $('<button>').addClass('restart').text('Reset Game');
 
