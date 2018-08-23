@@ -26,16 +26,19 @@ $(fivebyfive).on('click', function(){
     $('.gameboard').empty();
    makeArray(5);
    createGameboard(virtualBoard);
+   $('.square').on('click', playersTurn);
 })
 $(fourbyfour).on('click', function(){
     $('.gameboard').empty();
     makeArray(4);
     createGameboard(virtualBoard);
+    $('.square').on('click', playersTurn);
 });
 $(threebythree).on('click', function(){
     $('.gameboard').empty();
     makeArray(3);
     createGameboard(virtualBoard);
+    $('.square').on('click', playersTurn);
 });
 
 
@@ -49,9 +52,6 @@ function initializeGame () {
 
     startingPlayer();
     $('.square').on('click', playersTurn);
-
-    
-
 
     $('.scoreboard').append(scoreTitle);
     $('h3').append(scoreCounter);
