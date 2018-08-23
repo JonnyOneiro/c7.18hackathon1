@@ -6,9 +6,11 @@ var currentPlayer = null;
 var winStreak = 3; //create bigger board should re-assign these values; make dynamic
 var boardSize = 3; //create bigger board should re-assign these values; make dynamic
 
-
 var scoreCounter = 0;
-var scoreTitle = $('<h3>').text('Score Board: ');
+var scoreTitle = $('<h3>').text('Games Played: ');
+var scorePlayer1 = $('<h4>').text('Player 1 Score: ');
+var scorePlayer2 = $('<h4>').text('Player 2 Score: ');
+
 var selectedRow = null;
 var selectedColumn = null;
 var selectedValue = null;
@@ -26,23 +28,29 @@ changeGameSize.append(fivebyfive);
 changeGameSize.append(fourbyfour);
 changeGameSize.append(threebythree);
 $(fivebyfive).on('click', function(){
-    $('.gameboard').empty();
+    resetGame();
     makeArray(5);
     createGameboard(virtualBoard);
+    $('.square').on('click', playersTurn);
 })
 $(fourbyfour).on('click', function(){
-    $('.gameboard').empty();
+    resetGame();
     makeArray(4);
     createGameboard(virtualBoard);
+    $('.square').on('click', playersTurn);
 });
 $(threebythree).on('click', function(){
-    $('.gameboard').empty();
+    resetGame();
     makeArray(3);
     createGameboard(virtualBoard);
+    $('.square').on('click', playersTurn);
 });
-
-
-
+$(resetButton).on('click',function(){
+    resetGame();
+    makeArray(3);
+    createGameboard(virtualBoard);
+    $('.square').on('click', playersTurn);
+});
 
 function initializeGame () {
     makeArray(3);
@@ -53,19 +61,11 @@ function initializeGame () {
     startingPlayer();
     $('.square').on('click', playersTurn);
 
-    
-
-
-    $('.scoreboard').append(scoreTitle);
+    $('.scoreboard').append(scoreTitle, scorePlayer1, scorePlayer2, changeGameSize);
     $('h3').append(scoreCounter);
 
     $('.container').append(resetButton);
-
-    $('.restart').on('click', resetGame);
     
-    $('.scoreboard').append(changeGameSize);
-
-
 }
 
 
