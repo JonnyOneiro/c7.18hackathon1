@@ -68,8 +68,19 @@ body {
 
 }
 
+.streaktext{
+    position: relative;
+    bottom: 35%
+}
 
+.gamesize{
+    position: relative;
+    bottom: 60%;
+}
 
-
-
+.restart{
+    display: block;
+    position: relative;
+    bottom: 10%;
+}
 
