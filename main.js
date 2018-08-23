@@ -157,6 +157,7 @@ function checkForWin(selectedRow,selectedColumn,selectedValue) {
   checkColumnWin(selectedRow,selectedColumn,selectedValue);
   checkPosDiagonalWin(selectedRow,selectedColumn,selectedValue);
   checkNegDiagonalWin(selectedRow,selectedColumn,selectedValue);
+  checkForTie(selectedValue);
 }
 
 function checkRowWin (selectedRow, selectedColumn, selectedValue) {
@@ -255,6 +256,11 @@ function checkNegDiagonalWin(selectedRow, selectedColumn, selectedValue) {
 function announceWinner() {
     checkWin = false;
     console.log("you win!");
+}
+
+function checkForTie() {
+    //console.log('inside function checkForTie');
+    
 }
 
 function resetGame () {
