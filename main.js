@@ -3,8 +3,8 @@ $(document).ready(initializeGame);
 var player1 = 0;
 var player2 = 1;
 var currentPlayer = null;
-var winStreak = 3; //create bigger board should re-assign these values; make dynamic
-var boardSize = 3; //create bigger board should re-assign these values; make dynamic
+var winStreak = 3;
+var boardSize = 3;
 
 var scoreCounter = 0;
 var scoreTitle = $('<h3>').text('Games Played: ');
@@ -17,6 +17,9 @@ var selectedValue = null;
 
 var winCount = 1;
 var checkWin = true;
+
+var filledBoxes = 0;
+var boardDimensions = boardSize * boardSize;
 
 
 var resetButton = $('<button>').addClass('restart').text('Reset Game');
@@ -149,15 +152,14 @@ function playersTurn () {
         currentPlayer = player1;
         checkForWin(selectedRow,selectedColumn,selectedValue);
     }
-    
 }
 
 function checkForWin(selectedRow,selectedColumn,selectedValue) {
-  checkRowWin(selectedRow,selectedColumn,selectedValue);
-  checkColumnWin(selectedRow,selectedColumn,selectedValue);
-  checkPosDiagonalWin(selectedRow,selectedColumn,selectedValue);
-  checkNegDiagonalWin(selectedRow,selectedColumn,selectedValue);
-  checkForTie(selectedValue);
+    checkRowWin(selectedRow,selectedColumn,selectedValue);
+    checkColumnWin(selectedRow,selectedColumn,selectedValue);
+    checkPosDiagonalWin(selectedRow,selectedColumn,selectedValue);
+    checkNegDiagonalWin(selectedRow,selectedColumn,selectedValue);
+    checkForTie();
 }
 
 function checkRowWin (selectedRow, selectedColumn, selectedValue) {
@@ -258,15 +260,15 @@ function announceWinner() {
     if (currentPlayer === 0) {
         currentPlayer = 2;   
     }  
-      var winMessage = 'Player ' + currentPlayer + ' Wins!';
+    var winMessage = 'Player ' + currentPlayer + ' Wins!';
     $('.message').text(winMessage);
-    console.log("you win!");
-
 }
 
 function checkForTie() {
-    //console.log('inside function checkForTie');
-    
+    filledBoxes++;
+    if (filledBoxes === boardDimensions) {
+        $('.message').text('Tie Game');
+    }
 }
 
 function resetGame () {
@@ -279,13 +281,14 @@ function resetGame () {
     currentPlayer = null;
 
     scoreCounter = 0;
-    scoreTitle = $('<h3>').text('Score Board: ');
+    scoreTitle = $('<h3>fi').text('Score Board: ');
     selectedRow = null;
     selectedColumn = null;
     selectedValue = null;
-
+    boardfilled = false;
     winCount = 1;
     checkWin = true;
+    filledBoxes = 0;
     $('.square').on('click', clickHandler);
 
     startingPlayer();
