@@ -18,10 +18,35 @@ var checkWin = true;
 
 var resetButton = $('<button>').addClass('restart').text('Reset Game');
 
+var changeGameSize = $('<div>').text('Choose Board Size');
+var fivebyfive = $('<button>').text('5x5').addClass('five');
+var fourbyfour = $('<button>').text('4x4').addClass('four');
+var threebythree = $('<button>').text('3x3').addClass('three');
+changeGameSize.append(fivebyfive);
+changeGameSize.append(fourbyfour);
+changeGameSize.append(threebythree);
+$(fivebyfive).on('click', function(){
+    $('.gameboard').empty();
+    makeArray(5);
+    createGameboard(virtualBoard);
+})
+$(fourbyfour).on('click', function(){
+    $('.gameboard').empty();
+    makeArray(4);
+    createGameboard(virtualBoard);
+});
+$(threebythree).on('click', function(){
+    $('.gameboard').empty();
+    makeArray(3);
+    createGameboard(virtualBoard);
+});
+
+
 
 
 function initializeGame () {
     makeArray(3);
+    
     createGameboard(virtualBoard);
     $('.square').on('click', clickHandler);
 
@@ -33,9 +58,12 @@ function initializeGame () {
 
     $('.scoreboard').append(scoreTitle);
     $('h3').append(scoreCounter);
+
     $('.container').append(resetButton);
 
     $('.restart').on('click', resetGame);
+    
+    $('.scoreboard').append(changeGameSize);
 
 
 }
@@ -55,17 +83,12 @@ function createGameboard (gameBoardArray) {
     $('.square').css('width', 95/gameBoardArray.length+'%');
 }
 
-
-
 function keepScore () {
     console.log('keepScore called');
- 
     $('.scoreboard').append(scoreTitle);
     $('h3').text('Score Board: ' + scoreCounter);
 
 }
-
-
 
 function playersTurn () {
     
@@ -102,14 +125,11 @@ function playersTurn () {
     
 }
 
-
-function checkForWin (selectedRow,selectedColumn,selectedValue) {
-
+function checkForWin(selectedRow,selectedColumn,selectedValue) {
   checkRowWin(selectedRow,selectedColumn,selectedValue);
   checkColumnWin(selectedRow,selectedColumn,selectedValue);
   checkPosDiagonalWin(selectedRow,selectedColumn,selectedValue);
   checkNegDiagonalWin(selectedRow,selectedColumn,selectedValue);
-
 }
 
 function checkRowWin (selectedRow, selectedColumn, selectedValue) {
@@ -210,7 +230,6 @@ function announceWinner() {
     console.log("you win!");
 }
 
-
 function resetGame () {
     $('.gameboard').empty();
     checkWin = true;
@@ -239,7 +258,6 @@ function resetGame () {
     $('.restart').on('click', resetGame);
 }
 
-
 function clickHandler() {
 
     var columnVal = $(this).attr('column');
@@ -251,15 +269,14 @@ function clickHandler() {
     console.log('the text is: ', sqTextVal);
 }
 
-
 function startingPlayer(){
     currentPlayer = player1;
     console.log('starting player');
 
 }
 
-
 function makeArray(boardSize){
+    console.log('makeArray was run');
     virtualBoard = new Array();
         for (var newSubArray = 0; newSubArray <= (boardSize-1); newSubArray++) {
             var actualBoard = new Array(boardSize).fill('');
