@@ -3,8 +3,8 @@ $(document).ready(initializeGame);
 var player1 = 0;
 var player2 = 1;
 var currentPlayer = null;
-var winStreak = 3;
-var boardSize = 3; 
+var winStreak = 3; //create bigger board should re-assign these values; make dynamic
+var boardSize = 3; //create bigger board should re-assign these values; make dynamic
 
 
 var scoreCounter = 0;
@@ -15,6 +15,8 @@ var selectedValue = null;
 
 var winCount = 1;
 var checkWin = true;
+
+var resetButton = $('<button>').addClass('restart').text('Reset Game');
 
 var changeGameSize = $('<div>').text('Choose Board Size');
 var fivebyfive = $('<button>').text('5x5').addClass('five');
@@ -56,8 +58,13 @@ function initializeGame () {
 
     $('.scoreboard').append(scoreTitle);
     $('h3').append(scoreCounter);
+
+    $('.container').append(resetButton);
+
+    $('.restart').on('click', resetGame);
     
     $('.scoreboard').append(changeGameSize);
+
 
 }
 
@@ -224,8 +231,31 @@ function announceWinner() {
 }
 
 function resetGame () {
+    $('.gameboard').empty();
     checkWin = true;
     scoreCounter++;
+
+    player1 = 0;
+    player2 = 1;
+    currentPlayer = null;
+
+    scoreCounter = 0;
+    scoreTitle = $('<h3>').text('Score Board: ');
+    selectedRow = null;
+    selectedColumn = null;
+    selectedValue = null;
+
+    winCount = 1;
+    checkWin = true;
+
+    makeArray(3);
+    createGameboard(virtualBoard);
+    $('.square').on('click', clickHandler);
+
+    startingPlayer();
+    $('.square').on('click', playersTurn);
+
+    $('.restart').on('click', resetGame);
 }
 
 function clickHandler() {
