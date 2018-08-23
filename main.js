@@ -4,7 +4,7 @@ var player1 = 0;
 var player2 = 1;
 var currentPlayer = null;
 var winStreak = 3;
-var boardSize = 3; // dynamic win requirements: 3,4,5
+var boardSize = 3; 
 
 
 var scoreCounter = 0;
@@ -13,7 +13,8 @@ var selectedRow = null;
 var selectedColumn = null;
 var selectedValue = null;
 
-var winCount = 0;
+var winCount = 1;
+var checkWin = true;
 
 
 
@@ -99,8 +100,8 @@ function playersTurn () {
 }
 
 
-function checkForWin(selectedRow,selectedColumn,selectedValue) {
-    debugger;
+function checkForWin (selectedRow,selectedColumn,selectedValue) {
+
   checkRowWin(selectedRow,selectedColumn,selectedValue);
   checkColumnWin(selectedRow,selectedColumn,selectedValue);
   checkPosDiagonalWin(selectedRow,selectedColumn,selectedValue);
@@ -108,111 +109,107 @@ function checkForWin(selectedRow,selectedColumn,selectedValue) {
 
 }
 
-function checkRowWin(selectedRow, selectedColumn, selectedValue) {
-    
-    var comparedColumn = selectedColumn + 1;
-    if (comparedColumn < virtualBoard.length - 1) {
-        if (selectedValue === virtualBoard[selectedRow][comparedColumn]) {
-            winCount+=1;
-            comparedColumn++;
-        }
-    } else {
-        var comparedColumn = selectedRow - 1;
-        if (comparedColumn >= 0) {
+function checkRowWin (selectedRow, selectedColumn, selectedValue) {
+    if (checkWin) {
+        var comparedColumn = selectedColumn + 1;
+        for ( ; comparedColumn < virtualBoard.length; comparedColumn++) {
             if (selectedValue === virtualBoard[selectedRow][comparedColumn]) {
-                winCount+=1;
-                comparedColumn--;
+                winCount++;
+            }
+        } 
+        var comparedColumn = selectedColumn - 1;
+        for ( ; comparedColumn >= 0; comparedColumn--) {
+            if (selectedValue === virtualBoard[selectedRow][comparedColumn]) {
+                winCount++;
             }
         }
+        console.log('win count is: ', winCount);
+        if (winCount === winStreak) {
+            announceWinner();
+            return;
+        }
+        winCount = 1;
     }
-    console.log('win count is: ', winCount);
-    if (winCount === winStreak) {
-        announceWinner();
-    }
-    // winCount = 0;
 }
 
 function checkColumnWin(selectedRow, selectedColumn, selectedValue) {
-    var comparedRow = selectedRow + 1;
-
-    if (comparedRow < virtualBoard.length) {
-        if (selectedValue === virtualBoard[comparedRow][selectedColumn]) {
-            winCount+=1;
-            comparedRow++;
-        }
-    } else {
-        var comparedRow = selectedRow - 1;
-        if (comparedRow >= 0) {
+    if (checkWin) {
+        var comparedRow = selectedRow + 1;
+        for ( ;comparedRow < virtualBoard.length; comparedRow++) {
             if (selectedValue === virtualBoard[comparedRow][selectedColumn]) {
-                winCount+=1;
-                comparedRow--;
+                winCount++;
             }
         }
-    }
-    if (winCount === winStreak) {
-        announceWinner();
-    }
-    // winCount = 0;
-}
-function checkPosDiagonalWin(selectedRow, selectedColumn, selectedValue) {
-    var comparedRow = selectedRow - 1;
-    var comparedColumn = selectedColumn + 1;
-    if (comparedColumn < virtualBoard.length && comparedRow >= 0) {
-        if (selectedValue === virtualBoard[comparedRow][comparedColumn]) {
-            winCount+=1;
-            comparedRow--;
-            comparedColumn++;
+        var comparedRow = selectedRow - 1;
+        for ( ;comparedRow >= 0; comparedRow--) {
+            if (selectedValue === virtualBoard[comparedRow][selectedColumn]) {
+                winCount++;
+            }
         }
-    } else {
+        if (winCount === winStreak) {
+            announceWinner();
+            return;
+        }
+        winCount = 1;
+    }
+}
+
+function checkPosDiagonalWin(selectedRow, selectedColumn, selectedValue) {
+    if (checkWin) {
+        var comparedRow = selectedRow - 1;
+        var comparedColumn = selectedColumn + 1;
+        for ( ;comparedColumn < virtualBoard.length && comparedRow >= 0; comparedColumn++, comparedRow--) {
+            if (selectedValue === virtualBoard[comparedRow][comparedColumn]) {
+                winCount++;
+            }
+        } 
         var comparedRow = selectedRow + 1;
         var comparedColumn = selectedColumn - 1;
-        if (comparedRow < virtualBoard.length && comparedColumn >= 0) {
+        for ( ; comparedRow < virtualBoard.length && comparedColumn >= 0; comparedRow++, comparedColumn--) {
             if (selectedValue === virtualBoard[comparedRow][comparedColumn]) {
-                winCount+=1;
-                comparedRow++;
-                comparedColumn--;
+                winCount++;
             }
         }
+        if (winCount === winStreak) {
+            announceWinner();
+            return;
+        }
+        winCount = 1;
     }
-    if (winCount === winStreak) {
-        announceWinner();
-    }
-    // winCount = 0;
 }
 
 function checkNegDiagonalWin(selectedRow, selectedColumn, selectedValue) {
-    var comparedRow = selectedRow + 1;
-    var comparedColumn = selectedColumn + 1;
-    if (comparedColumn < virtualBoard.length && comparedRow < virtualBoard.length) {
-        if (selectedValue === virtualBoard[comparedRow][comparedColumn]) {
-            winCount+=1;
-            comparedRow++;
-            comparedColumn++;
-        }
-    } else {
+    if (checkWin) {
+        var comparedRow = selectedRow + 1;
+        var comparedColumn = selectedColumn + 1;
+        for ( ;comparedColumn < virtualBoard.length && comparedRow < virtualBoard.length; comparedRow++, comparedColumn++) {
+            if (selectedValue === virtualBoard[comparedRow][comparedColumn]) {
+                winCount++;
+            }
+        } 
         var comparedRow = selectedRow - 1;
         var comparedColumn = selectedColumn - 1;
-        if (comparedColumn >= 0 && comparedRow >= 0) {
+        for ( ;comparedColumn >= 0 && comparedRow >= 0;  comparedRow--, comparedColumn--) {
             if (selectedValue === virtualBoard[comparedRow][comparedColumn]) {
-                winCount+=1;
-                comparedRow--;
-                comparedColumn--;
+                winCount++;
             }
         }
+        if (winCount === winStreak) {
+            announceWinner();
+            return;
+        }
+        winCount = 1;
     }
-    if (winCount === winStreak) {
-        announceWinner();
-    }
-    // winCount = 0;
 }
 
 function announceWinner() {
+    checkWin = false;
     console.log("you win!");
 }
 
 
 function resetGame () {
-
+    checkWin = true;
     scoreCounter++;
 }
 
