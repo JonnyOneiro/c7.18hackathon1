@@ -17,10 +17,17 @@
    </header>
 
    <div class="scoreboard">
-      <audio id="music" src="./assets/sounds/background-music.mp3" controls autoplay loop>
-          <source src="audio/beep.mp3"></source>
-          <source src="audio/beep.ogg"></source>
-      </audio>
+
+      <audio id="player" src="./assets/sounds/background-music.mp3" autoplay loop></audio>
+        <div>
+            <button onclick="document.getElementById('player').play()">Play</button>
+            <button onclick="document.getElementById('player').pause()">Pause</button>
+            <button onclick="document.getElementById('player').muted=!document.getElementById('player').muted">Mute / Unmute</button>
+            <source class="sfx pop" src="./assets/sounds/sfx-pop.mp3"></source>
+            <source class="sfx jingle" src="./assets/sounds/sfx-jingle.wav"></source>
+          
+        </div>
+      
    </div>
 
    <div class="gameboard">
