@@ -54,6 +54,12 @@ header{
     font-size: 2em;
 }
 
+.menu{
+    position: relative;
+    width: 25%;
+    bottom: 60%;
+}
+
 .gameboard{
     margin: auto;
     height: 60%;
@@ -96,26 +102,17 @@ button {
 
 }
 
-
-.streaktext{
-    position: relative;
-    bottom: 35%
-}
-
 button:hover {
     box-shadow: 0 0 20px 3px rgba(255, 223, 119, 0.774);
     text-shadow: 1px 1px rgba(255, 223, 119, 0.774);
 }
 
-.gamesize{
-    position: relative;
-    bottom: 60%;
-}
+
 
 .restart{
     display: block;
     position: relative;
-    bottom: 10%;
+    bottom: 50%;
 }
 
 .message {

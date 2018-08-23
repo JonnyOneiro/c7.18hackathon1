@@ -20,7 +20,7 @@ var checkWin = true;
 
 
 var resetButton = $('<button>').addClass('restart').text('Reset Game');
-
+var sideBar = $('<div>').addClass('menu');
 var changeGameSize = $('<div>').text('Choose Board Size').addClass('gamesize');
 var fivebyfive = $('<button>').text('5x5').addClass('five');
 var fourbyfour = $('<button>').text('4x4').addClass('four');
@@ -31,6 +31,7 @@ var threestreak = $('<button>').text('3').addClass('streakbutton');
 var fourstreak = $('<button>').text('4').addClass('streakbutton');
 var fivestreak = $('<button>').text('5').addClass('streakbutton');
 changeStreakNeededToWin.append($('<br>')).append(threestreak, fourstreak, fivestreak).append($('<br>'));
+sideBar.append(scoreTitle, scorePlayer1, scorePlayer2, changeGameSize, changeStreakNeededToWin);
 $(threestreak).on('click', function(){
     winStreak = 3;
     console.log('winstreak is:', winStreak);
@@ -89,10 +90,8 @@ function initializeGame () {
 
     $('h3').append(scoreCounter);
 
-    $('.container').append(resetButton);
-    $('.container').append(changeStreakNeededToWin);
-    $('.container').append(changeGameSize);
-    $('.scoreboard').append(scoreTitle, scorePlayer1, scorePlayer2, changeGameSize);
+    $('.container').append(sideBar, resetButton);
+    // $('.scoreboard').append(scoreTitle, scorePlayer1, scorePlayer2,);
     $('h3').append(scoreCounter);
 }
 
