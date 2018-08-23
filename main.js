@@ -15,11 +15,35 @@ var selectedValue = null;
 
 var winCount = 0;
 
+var changeGameSize = $('<div>').text('Choose Board Size');
+var fivebyfive = $('<button>').text('5x5').addClass('five');
+var fourbyfour = $('<button>').text('4x4').addClass('four');
+var threebythree = $('<button>').text('3x3').addClass('three');
+changeGameSize.append(fivebyfive);
+changeGameSize.append(fourbyfour);
+changeGameSize.append(threebythree);
+$(fivebyfive).on('click', function(){
+    $('.gameboard').empty();
+   makeArray(5);
+   createGameboard(virtualBoard);
+})
+$(fourbyfour).on('click', function(){
+    $('.gameboard').empty();
+    makeArray(4);
+    createGameboard(virtualBoard);
+});
+$(threebythree).on('click', function(){
+    $('.gameboard').empty();
+    makeArray(3);
+    createGameboard(virtualBoard);
+});
+
 
 
 
 function initializeGame () {
     makeArray(3);
+    
     createGameboard(virtualBoard);
     $('.square').on('click', clickHandler);
 
@@ -31,6 +55,9 @@ function initializeGame () {
 
     $('.scoreboard').append(scoreTitle);
     $('h3').append(scoreCounter);
+    
+    $('.scoreboard').append(changeGameSize);
+  
     
 
 
@@ -100,7 +127,6 @@ function playersTurn () {
 
 
 function checkForWin(selectedRow,selectedColumn,selectedValue) {
-    debugger;
   checkRowWin(selectedRow,selectedColumn,selectedValue);
   checkColumnWin(selectedRow,selectedColumn,selectedValue);
   checkPosDiagonalWin(selectedRow,selectedColumn,selectedValue);
@@ -237,9 +263,14 @@ function startingPlayer(){
 
 
 function makeArray(boardSize){
+    console.log('makeArray was run');
     virtualBoard = new Array();
         for (var newSubArray = 0; newSubArray <= (boardSize-1); newSubArray++) {
             var actualBoard = new Array(boardSize).fill('');
             virtualBoard.push(actualBoard);
         }
+}
+
+function changeGameBoard(){
+
 }
