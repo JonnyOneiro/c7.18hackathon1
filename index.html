@@ -9,20 +9,33 @@
 <body>
 
  <div class="container">
+    
    <header>
+    
      <h1>Nightmare Before Christmas <br> TIC - TAC - TOE</h1>
 
    </header>
 
-   <div class="scoreboard">
 
+      <div class="menu">
 
-   </div>
+          <audio id="player" src="./assets/sounds/background-music.mp3" autoplay loop></audio>
+          <div>
+            <button onclick="document.getElementById('player').play()">Play</button>
+            <button onclick="document.getElementById('player').pause()">Pause</button>
+            <button onclick="document.getElementById('player').muted=!document.getElementById('player').muted">Mute / Unmute</button>
+            <audio id="pop" src="./assets/sounds/sfx-pop.mp3">
+            <audio id="jingle" src="./assets/sounds/sfx-jingle.wav">
+            <audio id="win" src="./assets/sounds/sfx-win.mp3">
+          </div>
+
+      </div>
 
    <div class="gameboard">
 
-
    </div>
+   
+
 
  </div>
   
@@ -30,3 +43,4 @@
 
 </body>
 </html>
+

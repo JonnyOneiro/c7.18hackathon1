@@ -28,7 +28,7 @@
 }
 
 header{
-    height: 10%;
+    height: 18%;
     width: 100%;
     justify-content: center;
     text-align: center;
@@ -55,15 +55,16 @@ header{
 }
 
 .menu{
+    display: inline-block;
     position: relative;
     width: 25%;
-    bottom: 60%;
+    bottom: 10vh;;
 }
 
 .gameboard{
-    margin: auto;
     height: 60%;
     width: 50%;  
+    display: inline-block
 }
 
 .square {
@@ -81,7 +82,7 @@ header{
 p {
     vertical-align: top;
     text-align: center;
-    font-size: 2em;
+    font-size: 3.5em;
 }
 
 .three, .four, .five  {
@@ -111,9 +112,10 @@ button:hover {
 
 
 .restart{
-    display: block;
+    display: inline-block;
     position: relative;
-    bottom: 50%;
+    left: 15%;
+    top: 4vh;
 }
 
 .message {
@@ -128,3 +130,6 @@ button:hover {
     top: 40%;
     left: 38%;
   }
+
+
+

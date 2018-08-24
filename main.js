@@ -3,100 +3,111 @@ $(document).ready(initializeGame);
 var player1 = 0;
 var player2 = 1;
 var currentPlayer = null;
-var winStreak = 3;
-var boardSize = 3;
+var player1Image =null;
+var player2Image = null;
+var player1Chosen = false;
+var winStreak = 3; //create bigger board should re-assign these values; make dynamic
+var boardSize = 3; //create bigger board should re-assign these values; make dynamic
 
 var scoreCounter = 0;
-var scoreTitle = $('<h3>').text('Games Played: ');
-var scorePlayer1 = $('<h4>').text('Player 1 Score: ');
-var scorePlayer2 = $('<h4>').text('Player 2 Score: ');
-
 var selectedRow = null;
 var selectedColumn = null;
 var selectedValue = null;
 
 var winCount = 1;
 var checkWin = true;
-
-var filledBoxes = 0;
-var boardDimensions = boardSize * boardSize;
-
-
-var resetButton = $('<button>').addClass('restart').text('Reset Game');
-var sideBar = $('<div>').addClass('menu');
-var changeGameSize = $('<div>').text('Choose Board Size').addClass('gamesize');
-var fivebyfive = $('<button>').text('5x5').addClass('five');
-var fourbyfour = $('<button>').text('4x4').addClass('four');
-var threebythree = $('<button>').text('3x3').addClass('three');
-changeGameSize.append($('<br>')).append(fivebyfive, fourbyfour, threebythree);
-var changeStreakNeededToWin = $('<div>').text('Choose the streak number needed to win').addClass('streaktext');
-var threestreak = $('<button>').text('3').addClass('streakbutton');
-var fourstreak = $('<button>').text('4').addClass('streakbutton');
-var fivestreak = $('<button>').text('5').addClass('streakbutton');
-changeStreakNeededToWin.append($('<br>')).append(threestreak, fourstreak, fivestreak).append($('<br>'));
-sideBar.append(scoreTitle, scorePlayer1, scorePlayer2, changeGameSize, changeStreakNeededToWin);
-$(threestreak).on('click', function(){
-    winStreak = 3;
-    console.log('winstreak is:', winStreak);
-})
-$(fourstreak).on('click', function(){
-    winStreak = 4;
-    console.log('winstreak is:', winStreak);
-})
-$(fivestreak).on('click', function(){
-    winStreak = 5;
-    console.log('winstreak is:', winStreak);
-})
-$(fivebyfive).on('click', function(){
-    winStreak=3;
-    resetGame();
-    makeArray(5);
-    createGameboard(virtualBoard);
-    $('.square').on('click', playersTurn);
-})
-$(fourbyfour).on('click', function(){
-    winStreak=3;
-    resetGame();
-    makeArray(4);
-    createGameboard(virtualBoard);
-    $('.square').on('click', playersTurn);
-});
-$(threebythree).on('click', function(){
-    winStreak=3;
-    resetGame();
-    makeArray(3);
-    createGameboard(virtualBoard);
-    $('.square').on('click', playersTurn);
-});
-$(resetButton).on('click',function(){
-    resetGame();
-    makeArray(3);
-    createGameboard(virtualBoard);
-    $('.square').on('click', playersTurn);
-});
-$(resetButton).on('click',function(){
-    resetGame();
-    makeArray(3);
-    createGameboard(virtualBoard);
-    $('.square').on('click', playersTurn);
-});
-
 function initializeGame () {
+    initializeDom();
     makeArray(3);
-    
     createGameboard(virtualBoard);
+    $('.square').on('click', playersTurn);
+    $('.square').on('click', playSquareSound);
+    $('button').on('click', playButtonSound);
+    
+
+}
+function initializeDom(){
+    var scoreTitle = $('<h3>').text('Games Played: ');
+    var scorePlayer1 = $('<h4>').text('Player 1 Score: ');
+    var scorePlayer2 = $('<h4>').text('Player 2 Score: ');
+    var resetButton = $('<button>').addClass('restart').text('Reset Game');
+    var sideBar = $('.menu');
+    var changeGameSize = $('<div>').text('Choose Board Size').addClass('gamesize');
+    var fivebyfive = $('<button>').text('5x5').addClass('five');
+    var fourbyfour = $('<button>').text('4x4').addClass('four');
+    var threebythree = $('<button>').text('3x3').addClass('three');
+    changeGameSize.append($('<br>')).append(threebythree, fourbyfour, fivebyfive);
+    var changeStreakNeededToWin = $('<div>').text('Choose the streak number needed to win').addClass('streaktext');
+    var threestreak = $('<button>').text('3').addClass('streakbutton');
+    var fourstreak = $('<button>').text('4').addClass('streakbutton');
+    var fivestreak = $('<button>').text('5').addClass('streakbutton');
+    changeStreakNeededToWin.append($('<br>')).append(threestreak, fourstreak, fivestreak).append($('<br>'));
+    sideBar.append(scoreTitle, scorePlayer1, scorePlayer2, changeGameSize, changeStreakNeededToWin);
+
+    $(threestreak).on('click', function(){
+        winStreak = 3;
+        console.log('winstreak is:', winStreak);
+    })
+    $(fourstreak).on('click', function(){
+        winStreak = 4;
+        console.log('winstreak is:', winStreak);
+    })
+    $(fivestreak).on('click', function(){
+        winStreak = 5;
+        console.log('winstreak is:', winStreak);
+    })
+    $(fivebyfive).on('click', function(){
+        winStreak=3;
+        boardSize=5;
+        resetGame();
+        makeArray(boardSize);
+        createGameboard(virtualBoard);
+        $('.square').on('click', playersTurn);
+        $('.square').on('click', playSquareSound);
+        $('button').on('click', playButtonSound);
+    })
+    $(fourbyfour).on('click', function(){
+        boardSize = 4;
+        winStreak=3;
+        resetGame();
+        makeArray(boardSize);
+        createGameboard(virtualBoard);
+        $('.square').on('click', playersTurn);
+        $('.square').on('click', playSquareSound);
+        $('button').on('click', playButtonSound);
+    });
+    $(threebythree).on('click', function(){
+        winStreak=3;
+        boardSize = 3;
+        resetGame();
+        makeArray(boardSize);
+        createGameboard(virtualBoard);
+        $('.square').on('click', playersTurn);
+        $('.square').on('click', playSquareSound);
+        $('button').on('click', playButtonSound);
+    });
+    $(resetButton).on('click',function(){
+        resetGame();
+        makeArray(3);
+        createGameboard(virtualBoard);
+        $('.square').on('click', playersTurn);
+        $('.square').on('click', playSquareSound);
+        $('button').on('click', playButtonSound);
+    });
+
     $('.square').on('click', clickHandler);
 
     startingPlayer();
-    $('.square').on('click', playersTurn);
+   
 
 
     $('h3').append(scoreCounter);
-
-    $('.container').append(sideBar, resetButton);
-    // $('.scoreboard').append(scoreTitle, scorePlayer1, scorePlayer2,);
+    $('.menu').append(resetButton);
     $('h3').append(scoreCounter);
+
+
 }
+
 
 
 function createGameboard (gameBoardArray) {
@@ -123,7 +134,7 @@ function keepScore () {
 function playersTurn () {
     
     if(currentPlayer === player1){
-        newPtag = $('<p>')
+        newPtag= $('<p>');
         $(this).append(newPtag);
         $(newPtag).text('X');
         selectedRow = parseInt($(this).attr('row'));
@@ -152,14 +163,15 @@ function playersTurn () {
         currentPlayer = player1;
         checkForWin(selectedRow,selectedColumn,selectedValue);
     }
+    
 }
 
 function checkForWin(selectedRow,selectedColumn,selectedValue) {
-    checkRowWin(selectedRow,selectedColumn,selectedValue);
-    checkColumnWin(selectedRow,selectedColumn,selectedValue);
-    checkPosDiagonalWin(selectedRow,selectedColumn,selectedValue);
-    checkNegDiagonalWin(selectedRow,selectedColumn,selectedValue);
-    checkForTie();
+  checkRowWin(selectedRow,selectedColumn,selectedValue);
+  checkColumnWin(selectedRow,selectedColumn,selectedValue);
+  checkPosDiagonalWin(selectedRow,selectedColumn,selectedValue);
+  checkNegDiagonalWin(selectedRow,selectedColumn,selectedValue);
+  checkForTie(selectedValue);
 }
 
 function checkRowWin (selectedRow, selectedColumn, selectedValue) {
@@ -260,15 +272,16 @@ function announceWinner() {
     if (currentPlayer === 0) {
         currentPlayer = 2;   
     }  
-    var winMessage = 'Player ' + currentPlayer + ' Wins!';
+      var winMessage = 'Player ' + currentPlayer + ' Wins!';
     $('.message').text(winMessage);
+    console.log("you win!");
+    playWinSound();
+
 }
 
 function checkForTie() {
-    filledBoxes++;
-    if (filledBoxes === boardDimensions) {
-        $('.message').text('Tie Game');
-    }
+    //console.log('inside function checkForTie');
+    
 }
 
 function resetGame () {
@@ -281,19 +294,21 @@ function resetGame () {
     currentPlayer = null;
 
     scoreCounter = 0;
-    scoreTitle = $('<h3>fi').text('Score Board: ');
+    scoreTitle = $('<h3>').text('Score Board: ');
     selectedRow = null;
     selectedColumn = null;
     selectedValue = null;
-    boardfilled = false;
+
     winCount = 1;
     checkWin = true;
-    filledBoxes = 0;
     $('.square').on('click', clickHandler);
 
     startingPlayer();
     $('.square').on('click', playersTurn);
     $('.message').text('');
+    $('.square').on('click', playSquareSound);
+    $('button').on('click', playButtonSound);
+
 }
 
 
@@ -321,4 +336,19 @@ function makeArray(boardSize){
         var actualBoard = new Array(boardSize).fill('');
         virtualBoard.push(actualBoard);
     }
+}
+
+function playSquareSound() {
+    var sqSound = document.getElementById("pop");
+    sqSound.play();
+}
+
+function playButtonSound() {
+    var btnSound = document.getElementById("jingle");
+    btnSound.play();
+}
+
+function playWinSound() {
+    var winSound = document.getElementById("win");
+    winSound.play();
 }
