@@ -93,6 +93,9 @@ function initializeGame () {
     $('.container').append(sideBar, resetButton);
     // $('.scoreboard').append(scoreTitle, scorePlayer1, scorePlayer2,);
     $('h3').append(scoreCounter);
+
+    $('.square').on('click', playSquareSound);
+    $('button').on('click', playButtonSound);
 }
 
 
@@ -261,6 +264,7 @@ function announceWinner() {
       var winMessage = 'Player ' + currentPlayer + ' Wins!';
     $('.message').text(winMessage);
     console.log("you win!");
+    playWinSound();
 
 }
 
@@ -318,4 +322,19 @@ function makeArray(boardSize){
         var actualBoard = new Array(boardSize).fill('');
         virtualBoard.push(actualBoard);
     }
+}
+
+function playSquareSound() {
+    var sqSound = document.getElementById("pop");
+    sqSound.play();
+}
+
+function playButtonSound() {
+    var btnSound = document.getElementById("jingle");
+    btnSound.play();
+}
+
+function playWinSound() {
+    var winSound = document.getElementById("win");
+    winSound.play();
 }

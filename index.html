@@ -23,11 +23,10 @@
             <button onclick="document.getElementById('player').play()">Play</button>
             <button onclick="document.getElementById('player').pause()">Pause</button>
             <button onclick="document.getElementById('player').muted=!document.getElementById('player').muted">Mute / Unmute</button>
-            <source class="sfx pop" src="./assets/sounds/sfx-pop.mp3"></source>
-            <source class="sfx jingle" src="./assets/sounds/sfx-jingle.wav"></source>
-          
+            <audio id="pop" src="./assets/sounds/sfx-pop.mp3">
+            <audio id="jingle" src="./assets/sounds/sfx-jingle.wav">
+            <audio id="win" src="./assets/sounds/sfx-win.mp3">
         </div>
-      
    </div>
 
    <div class="gameboard">
@@ -41,3 +40,4 @@
 
 </body>
 </html>
+
