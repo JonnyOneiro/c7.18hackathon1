@@ -79,6 +79,7 @@ header{
 }
 
 p {
+    vertical-align: top;
     text-align: center;
     font-size: 2em;
 }
