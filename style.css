@@ -28,7 +28,7 @@
 }
 
 header{
-    height: 10%;
+    height: 18%;
     width: 100%;
     justify-content: center;
     text-align: center;
@@ -55,15 +55,16 @@ header{
 }
 
 .menu{
+    display: inline-block;
     position: relative;
     width: 25%;
-    bottom: 60%;
+    bottom: 10vh;;
 }
 
 .gameboard{
-    margin: auto;
     height: 60%;
     width: 50%;  
+    display: inline-block
 }
 
 .square {
@@ -110,9 +111,10 @@ button:hover {
 
 
 .restart{
-    display: block;
+    display: inline-block;
     position: relative;
-    bottom: 50%;
+    right: 23%;
+    bottom: 35vh;
 }
 
 .message {
@@ -128,6 +130,5 @@ button:hover {
     left: 38%;
   }
 
-#music {
-    width: 25%;
-}
+
+
