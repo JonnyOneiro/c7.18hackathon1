@@ -131,25 +131,4 @@ button:hover {
   }
 
 
-.icon{
-      display: inline-block;
-      position: relative;
-      height: 90%;
-      width: 25%;
-      left: 75%;
-      bottom: 60vh;
 
-  }
-.jack, .oggyboogy, .sally, .zero{
-    margin-bottom: 5%;
-    display: inline-block;
-    background-repeat: no-repeat;
-    width: 48%;
-    height: 15%;
-  }
-/* .oggyboogy{
-    display: inline-block;
-    background-repeat: no-repeat;
-    width: 48%;
-    height: 15%;
-} */
