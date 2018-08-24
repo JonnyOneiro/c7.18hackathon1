@@ -28,11 +28,6 @@ function initializeDom(){
     var scoreTitle = $('<h3>').text('Games Played: ');
     var scorePlayer1 = $('<h4>').text('Player 1 Score: ');
     var scorePlayer2 = $('<h4>').text('Player 2 Score: ');
-    // var jack = $("<div>").css('background-image', 'url(./assets/jack.png)').addClass('jack');
-    // var oggyboogy= $("<div>").css('background-image', 'url(./assets/oggyboogy.png)').addClass('oggyboogy');
-    // var sally = $("<div>").css('background-image', 'url(./assets/sally.png)').addClass('sally');
-    // var zero = $("<div>").css('background-image', 'url(./assets/zero.png)').addClass('zero');
-    // $('.icon').append(jack, oggyboogy,sally, zero);
     var resetButton = $('<button>').addClass('restart').text('Reset Game');
     var sideBar = $('.menu');
     var changeGameSize = $('<div>').text('Choose Board Size').addClass('gamesize');
@@ -46,39 +41,6 @@ function initializeDom(){
     var fivestreak = $('<button>').text('5').addClass('streakbutton');
     changeStreakNeededToWin.append($('<br>')).append(threestreak, fourstreak, fivestreak).append($('<br>'));
     sideBar.append(scoreTitle, scorePlayer1, scorePlayer2, changeGameSize, changeStreakNeededToWin);
-    // $(jack).on('click', function(){
-    //     if(player1Chosen === false){
-    //     player1Image = $(jack)
-    //     player1Chosen=true;
-    //     }else{
-    //         player2Image = $(jack)
-    //     }
-        
-    // })
-    // $(oggyboogy).on('click', function(){
-    //     if(player1Chosen === false){
-    //     player1Image = $(oggyboogy)
-    //     player1Chosen=true;
-    //     }else{
-    //         player2Image = $(oggyboogy)
-    //     }
-    // });
-    // $(sally).on('click', function(){
-    //     if(player1Chosen === false){
-    //     player1Image = $(sally)
-    //     player1Chosen=true;
-    //     }else{
-    //         player2Image = $(sally)
-    //     }
-    // });
-    // $(zero).on('click', function(){
-    //     if(player1Chosen === false){
-    //     player1Image = $(zero)
-    //     player1Chosen=true;
-    //     }else{
-    //         player2Image = $(zero)
-    //     }
-    // });
 
     $(threestreak).on('click', function(){
         winStreak = 3;
@@ -135,9 +97,7 @@ function initializeDom(){
 
 
     $('h3').append(scoreCounter);
-    //$('.container').append(icon);
     $('.container').append(resetButton);
-    // $('.scoreboard').append(scoreTitle, scorePlayer1, scorePlayer2,);
     $('h3').append(scoreCounter);
 }
 
@@ -167,6 +127,7 @@ function keepScore () {
 function playersTurn () {
     
     if(currentPlayer === player1){
+        newPtag= $('<p>');
         $(this).append(newPtag);
         $(newPtag).text('X');
         selectedRow = parseInt($(this).attr('row'));
