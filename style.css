@@ -80,8 +80,9 @@ header{
 }
 
 p {
+    vertical-align: top;
     text-align: center;
-    font-size: 2em;
+    font-size: 3.5em;
 }
 
 .three, .four, .five  {
@@ -113,8 +114,8 @@ button:hover {
 .restart{
     display: inline-block;
     position: relative;
-    right: 23%;
-    bottom: 35vh;
+    left: 15%;
+    top: 4vh;
 }
 
 .message {

@@ -21,6 +21,8 @@ function initializeGame () {
     makeArray(3);
     createGameboard(virtualBoard);
     $('.square').on('click', playersTurn);
+    $('.square').on('click', playSquareSound);
+    $('button').on('click', playButtonSound);
     
 
 }
@@ -34,7 +36,7 @@ function initializeDom(){
     var fivebyfive = $('<button>').text('5x5').addClass('five');
     var fourbyfour = $('<button>').text('4x4').addClass('four');
     var threebythree = $('<button>').text('3x3').addClass('three');
-    changeGameSize.append($('<br>')).append(fivebyfive, fourbyfour, threebythree);
+    changeGameSize.append($('<br>')).append(threebythree, fourbyfour, fivebyfive);
     var changeStreakNeededToWin = $('<div>').text('Choose the streak number needed to win').addClass('streaktext');
     var threestreak = $('<button>').text('3').addClass('streakbutton');
     var fourstreak = $('<button>').text('4').addClass('streakbutton');
@@ -61,6 +63,8 @@ function initializeDom(){
         makeArray(boardSize);
         createGameboard(virtualBoard);
         $('.square').on('click', playersTurn);
+        $('.square').on('click', playSquareSound);
+        $('button').on('click', playButtonSound);
     })
     $(fourbyfour).on('click', function(){
         boardSize = 4;
@@ -69,6 +73,8 @@ function initializeDom(){
         makeArray(boardSize);
         createGameboard(virtualBoard);
         $('.square').on('click', playersTurn);
+        $('.square').on('click', playSquareSound);
+        $('button').on('click', playButtonSound);
     });
     $(threebythree).on('click', function(){
         winStreak=3;
@@ -77,19 +83,18 @@ function initializeDom(){
         makeArray(boardSize);
         createGameboard(virtualBoard);
         $('.square').on('click', playersTurn);
+        $('.square').on('click', playSquareSound);
+        $('button').on('click', playButtonSound);
     });
     $(resetButton).on('click',function(){
         resetGame();
         makeArray(3);
         createGameboard(virtualBoard);
         $('.square').on('click', playersTurn);
+        $('.square').on('click', playSquareSound);
+        $('button').on('click', playButtonSound);
     });
-    $(resetButton).on('click',function(){
-        resetGame();
-        makeArray(3);
-        createGameboard(virtualBoard);
-        $('.square').on('click', playersTurn);
-    });
+
     $('.square').on('click', clickHandler);
 
     startingPlayer();
@@ -97,11 +102,10 @@ function initializeDom(){
 
 
     $('h3').append(scoreCounter);
-    $('.container').append(resetButton);
+    $('.menu').append(resetButton);
     $('h3').append(scoreCounter);
 
-    $('.square').on('click', playSquareSound);
-    $('button').on('click', playButtonSound);
+
 }
 
 
@@ -302,6 +306,9 @@ function resetGame () {
     startingPlayer();
     $('.square').on('click', playersTurn);
     $('.message').text('');
+    $('.square').on('click', playSquareSound);
+    $('button').on('click', playButtonSound);
+
 }
 
 
