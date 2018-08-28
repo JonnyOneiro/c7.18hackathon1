@@ -80,9 +80,8 @@ header{
 }
 
 p {
-    vertical-align: top;
     text-align: center;
-    font-size: 3.5em;
+    font-size: 2em;
 }
 
 .three, .four, .five  {

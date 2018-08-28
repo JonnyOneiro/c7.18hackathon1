@@ -14,6 +14,9 @@ var selectedRow = null;
 var selectedColumn = null;
 var selectedValue = null;
 
+var filledBoxes = 0;
+var boardDimensions = boardSize*boardSize;
+
 var winCount = 1;
 var checkWin = true;
 function initializeGame () {
@@ -171,7 +174,7 @@ function checkForWin(selectedRow,selectedColumn,selectedValue) {
   checkColumnWin(selectedRow,selectedColumn,selectedValue);
   checkPosDiagonalWin(selectedRow,selectedColumn,selectedValue);
   checkNegDiagonalWin(selectedRow,selectedColumn,selectedValue);
-  checkForTie(selectedValue);
+  checkForTie();
 }
 
 function checkRowWin (selectedRow, selectedColumn, selectedValue) {
@@ -276,18 +279,21 @@ function announceWinner() {
     $('.message').text(winMessage);
     console.log("you win!");
     playWinSound();
+    scoreCounter+=1;
+    $('h3').text('Games Played: ' + scoreCounter);
 
 }
 
 function checkForTie() {
-    //console.log('inside function checkForTie');
-    
+    filledBoxes++;
+    if (filledBoxes === boardDimensions) {
+        $('.message').text('Tie Game');
+    }
 }
 
 function resetGame () {
     $('.gameboard').empty();
     checkWin = true;
-    scoreCounter++;
 
     player1 = 0;
     player2 = 1;
